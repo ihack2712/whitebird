@@ -1,6 +1,4 @@
 <div style="text-align: center">
-	<img src="./assets/whitebird.svg" width="256" height="256" />
+	<img src="./assets/whitebird.svg" width="256" height="256" /> Designed by Vexels.com
 	<h1>White Bird</h1>
 </div>
-
-<a target="_blank" href="https://www.vexels.com/vectors/preview/213505/white-bird-side-view-icon"> White bird side view icon </a> |   Designed by Vexels.com
