@@ -26,5 +26,6 @@
 		"editor.useTabStops": true,
 		"editor.insertSpaces": false,
 		"editor.detectIndentation": false
-	}
+	},
+	"svg.preview.background": "black"
 }
