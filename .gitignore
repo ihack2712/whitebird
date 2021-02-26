@@ -1,0 +1,11 @@
+# Directories
+/node_modules/
+/.data/
+/.config/
+/build/
+/coverage/
+
+# Files
+*.env
+*.log
+.DS_Store

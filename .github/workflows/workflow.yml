@@ -1,0 +1,51 @@
+name: "Node Workflow"
+on: ["push", "pull_request"]
+jobs:
+  node:
+    name: "Node"
+    runs-on: "ubuntu-latest"
+    steps:
+      
+      - name: "Checkout code"
+        uses: "actions/checkout@v2"
+      
+      - name: "Setup node"
+        uses: "actions/setup-node@v2"
+        with:
+          node-version: "14"
+      
+      - name: "Cache ~/.pnpm-store"
+        uses: "actions/cache@main"
+        env:
+          cache-name: "cache-pnpm-store"
+        with:
+          path: "~/.pnpm-store"
+          key: "${{ runner.os }}-${{ matrix.node-version }}-build-${{ env.cache-name }}-${{ hashFiles('**/pnpm-lock.yaml') }}"
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.node-version }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-${{ matrix.node-version }}-build-
+            ${{ runner.os }}-
+      
+      - name: "Install pnpm"
+        run: "npm i -g pnpm"
+      
+      - name: "Install dependencies"
+        run: "pnpm i"
+      
+      - name: "Check formatting"
+        run: "pnpm format:check"
+      
+      - name: "Eslint"
+        run: "pnpm lint:nofix"
+      
+      - name: "Build code"
+        run: "pnpm build"
+      
+      - name: "Test code"
+        run: "pnpm test"
+      
+      - name: "Publish package"
+        if: "${{github.ref == 'refs/heads/master' && github.repository == 'ihack2712/whitebird'}}"
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
