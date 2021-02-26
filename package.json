@@ -4,7 +4,6 @@
   "description": "A reverse-proxy built on node.",
   "main": "build/index.js",
   "scripts": {
-    "preinstall": "npx -y only-allow pnpm",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
